@@ -19,7 +19,7 @@ export default function Home() {
       </InputSearchContainer>
       <Header>
         <strong>3 contatos</strong>
-        <Link to="/">Novo contato</Link>
+        <Link to="/new">Novo contato</Link>
       </Header>
       <ListContainer>
         <header>
@@ -40,43 +40,7 @@ export default function Home() {
           <span>(41) 99999-9999</span>
         </div>
         <div className="actions">
-          <Link to="/">
-            <img src={edit} alt="edit" />
-          </Link>
-          <button type="button">
-            <img src={trash} alt="trash" />
-          </button>
-        </div>
-      </Card>
-      <Card>
-        <div className="info">
-          <div className="contact-name">
-            <strong>Mateus Silva</strong>
-            <small>instagram</small>
-          </div>
-          <span>mateus@devacademy.com.br</span>
-          <span>(41) 99999-9999</span>
-        </div>
-        <div className="actions">
-          <Link to="/">
-            <img src={edit} alt="edit" />
-          </Link>
-          <button type="button">
-            <img src={trash} alt="trash" />
-          </button>
-        </div>
-      </Card>
-      <Card>
-        <div className="info">
-          <div className="contact-name">
-            <strong>Mateus Silva</strong>
-            <small>instagram</small>
-          </div>
-          <span>mateus@devacademy.com.br</span>
-          <span>(41) 99999-9999</span>
-        </div>
-        <div className="actions">
-          <Link to="/">
+          <Link to="/edit/123">
             <img src={edit} alt="edit" />
           </Link>
           <button type="button">
