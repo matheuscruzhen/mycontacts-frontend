@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 
 import Header from '../Header';
+import ContactsList from '../ContactsList';
 
 import GlobalStyles from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
@@ -12,6 +13,7 @@ function App() {
       <GlobalStyles />
       <Container>
         <Header />
+        <ContactsList />
       </Container>
     </ThemeProvider>
   );
