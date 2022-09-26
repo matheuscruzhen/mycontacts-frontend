@@ -20,6 +20,7 @@
     "indent": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
+    "react/jsx-no-bind": "off",
     "comma-dangle": [
       "error",
       {
