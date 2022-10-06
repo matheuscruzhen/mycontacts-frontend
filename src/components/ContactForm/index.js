@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import isEmailValid from '../../utils/isEmailValid';
 import useErrors from '../../hooks/useErrors';
+import formatPhone from '../../utils/formatPhone';
 
 import FormGroup from '../FormGroup';
 import Input from '../Input';
@@ -38,6 +39,10 @@ export default function ContactForm({ buttonLabel }) {
     }
   }
 
+  function handlePhoneChange(event) {
+    setPhone(formatPhone(event.target.value));
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -65,7 +70,8 @@ export default function ContactForm({ buttonLabel }) {
         <Input
           placeholder="Telefone"
           value={phone}
-          onChange={(event) => setPhone(event.target.value)}
+          onChange={handlePhoneChange}
+          maxLength="15"
         />
       </FormGroup>
       <FormGroup>
