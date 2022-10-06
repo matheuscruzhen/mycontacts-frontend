@@ -45,11 +45,17 @@ export default function ContactForm({ buttonLabel }) {
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup error={getErrorMessageByFieldName('name')}>
-        <Input placeholder="Nome" value={name} onChange={handleNameChange} />
+        <Input
+          placeholder="Nome"
+          error={getErrorMessageByFieldName('name')}
+          value={name}
+          onChange={handleNameChange}
+        />
       </FormGroup>
       <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
           placeholder="E-mail"
+          error={getErrorMessageByFieldName('email')}
           value={email}
           onChange={handleEmailChange}
         />
