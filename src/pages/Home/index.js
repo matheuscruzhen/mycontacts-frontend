@@ -14,7 +14,6 @@ import trash from '../../assets/images/icons/trash.svg';
 
 import Loader from '../../components/Loader';
 
-import delay from '../../utils/delay';
 import ContactsService from '../../services/ContactsService';
 
 export default function Home() {
