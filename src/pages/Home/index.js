@@ -9,13 +9,15 @@ import {
   Header,
   InputSearchContainer,
   ListHeader,
+  SearchNotFoundContainer,
 } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
-import trash from '../../assets/images/icons/trash.svg';
-import sad from '../../assets/images/icons/sad.svg';
 import emptyBox from '../../assets/images/icons/empty-box.svg';
+import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg';
+import sad from '../../assets/images/icons/sad.svg';
+import trash from '../../assets/images/icons/trash.svg';
 
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
@@ -124,6 +126,16 @@ export default function Home() {
                 primeiro!
               </p>
             </EmptyListContainer>
+          )}
+
+          {contacts.length > 0 && filteredContacts.length < 1 && (
+            <SearchNotFoundContainer>
+              <img src={magnifierQuestion} alt="magnifier question" />
+              <span>
+                Nenhum resultado foi encontrado para{' '}
+                <strong>{searchTerm}</strong>.
+              </span>
+            </SearchNotFoundContainer>
           )}
 
           {filteredContacts.length > 0 && (
