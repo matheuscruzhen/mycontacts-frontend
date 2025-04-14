@@ -17,6 +17,8 @@
   "rules": {
     "class-methods-use-this": "off",
     "function-paren-newline": "off",
+    "no-shadow": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }],
     "indent": "off",
     "import/prefer-default-export": "off",
     "implicit-arrow-linebreak": "off",

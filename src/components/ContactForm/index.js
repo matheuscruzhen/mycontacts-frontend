@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -20,6 +19,7 @@ export default function ContactForm({ buttonLabel }) {
   const [phone, setPhone] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
   const { errors, setError, removeError, getErrorMessageByFieldName } =
     useErrors();
@@ -28,9 +28,14 @@ export default function ContactForm({ buttonLabel }) {
 
   useEffect(() => {
     async function loadCategories() {
-      const categories = await CategoriesService.listCategories();
+      try {
+        const categories = await CategoriesService.listCategories();
 
-      setCategories(categories);
+        setCategories(categories);
+      } catch {
+      } finally {
+        setIsLoadingCategories(false);
+      }
     }
 
     loadCategories();
@@ -91,9 +96,10 @@ export default function ContactForm({ buttonLabel }) {
           maxLength="15"
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup isLoading={isLoadingCategories}>
         <Select
           value={categoryId}
+          disabled={isLoadingCategories}
           onChange={(event) => setCategoryId(event.target.value)}
         >
           <option value="">Categoria</option>
