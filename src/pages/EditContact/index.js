@@ -13,14 +13,15 @@ export default function EditContact() {
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [contactName, setContactName] = useState('');
   const contactFormRef = useRef(null);
 
   useEffect(() => {
     async function loadContact() {
       try {
         const contact = await ContactsService.getContactById(id);
-
         contactFormRef.current.setFieldsValues(contact);
+        setContactName(contact.name);
         setIsLoading(false);
       } catch {
         history.push('/');
@@ -41,7 +42,9 @@ export default function EditContact() {
     <>
       <Loader isLoading={isLoading} />
       <div>
-        <PageHeader title="Editar Mateus Silva" />
+        <PageHeader
+          title={isLoading ? 'Carregando...' : `Editar ${contactName}`}
+        />
 
         <ContactForm
           ref={contactFormRef}
