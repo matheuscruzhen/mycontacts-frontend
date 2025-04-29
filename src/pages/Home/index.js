@@ -19,8 +19,9 @@ import magnifierQuestion from '../../assets/images/icons/magnifier-question.svg'
 import sad from '../../assets/images/icons/sad.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
-import Loader from '../../components/Loader';
 import Button from '../../components/Button';
+import Loader from '../../components/Loader';
+import Modal from '../../components/Modal';
 
 import ContactsService from '../../services/ContactsService';
 
@@ -73,6 +74,16 @@ export default function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
+
+      <Modal
+        danger
+        title="Tem certeza que deseja deletar este contato?"
+        confirmLabel="Deletar"
+        onCancel={() => alert('cancelou')}
+        onConfirm={() => alert('confirmou')}
+      >
+        <p>Esta ação não poderá ser desfeita!</p>
+      </Modal>
 
       {contacts.length > 0 && (
         <InputSearchContainer>
