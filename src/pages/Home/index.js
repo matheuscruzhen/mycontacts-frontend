@@ -23,6 +23,7 @@ import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import Modal from '../../components/Modal';
 
+import toast from '../../utils/toast';
 import ContactsService from '../../services/ContactsService';
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
   const [hasError, setHasError] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contactToBeDeleted, setContactToBeDeleted] = useState(null);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const filteredContacts = useMemo(
     () =>
@@ -80,10 +82,23 @@ export default function Home() {
 
   function handleCloseDeleteModal() {
     setIsDeleteModalOpen(false);
+    setContactToBeDeleted(null);
   }
 
-  function handleDeleteContact() {
-    console.log(contactToBeDeleted.id);
+  async function handleDeleteContact() {
+    try {
+      setIsLoadingDelete(true);
+      await ContactsService.deleteContact(contactToBeDeleted.id);
+      setContacts((prevState) =>
+        prevState.filter((contact) => contact.id !== contactToBeDeleted.id)
+      );
+      handleCloseDeleteModal();
+      toast({ type: 'success', text: 'Contato deletado com sucesso!' });
+    } catch {
+      toast({ type: 'danger', text: 'Erro ao deletar o contato!' });
+    } finally {
+      setIsLoadingDelete(false);
+    }
   }
 
   return (
@@ -93,6 +108,7 @@ export default function Home() {
       <Modal
         danger
         confirmLabel="Deletar"
+        isLoading={isLoadingDelete}
         title={`Tem certeza que deseja remover o contato "${contactToBeDeleted?.name}"?`}
         visible={isDeleteModalOpen}
         onCancel={handleCloseDeleteModal}
