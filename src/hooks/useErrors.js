@@ -1,25 +1,29 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export default function useErrors() {
   const [errors, setErrors] = useState([]);
 
-  function setError({ field, message }) {
-    const errorAlreadyExists = errors.find((error) => error.field === field);
+  const setError = useCallback(
+    ({ field, message }) => {
+      const errorAlreadyExists = errors.find((error) => error.field === field);
 
-    if (errorAlreadyExists) return;
+      if (errorAlreadyExists) return;
 
-    setErrors((prevState) => [...prevState, { field, message }]);
-  }
+      setErrors((prevState) => [...prevState, { field, message }]);
+    },
+    [errors]
+  );
 
-  function removeError(fieldname) {
+  const removeError = useCallback((fieldname) => {
     setErrors((prevState) =>
       prevState.filter((error) => error.field !== fieldname)
     );
-  }
+  }, []);
 
-  function getErrorMessageByFieldName(fieldname) {
-    return errors.find((error) => error.field === fieldname)?.message;
-  }
+  const getErrorMessageByFieldName = useCallback(
+    (fieldname) => errors.find((error) => error.field === fieldname)?.message,
+    [errors]
+  );
 
   return { errors, setError, removeError, getErrorMessageByFieldName };
 }
