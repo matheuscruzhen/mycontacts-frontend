@@ -6,8 +6,6 @@ import { Container } from './styles';
 import xCircleIcon from '../../../assets/images/icons/x-circle.svg';
 import checkCircleIcon from '../../../assets/images/icons/check-circle.svg';
 
-import useAnimatedUnmount from '../../../hooks/useAnimatedUnmount';
-
 export default function ToastMessage({
   message,
   isLeaving,
